@@ -1,4 +1,5 @@
 import hashlib
+import os
 
 class Function:
     def __init__(self, name="root", file_type='X', file_name="", fold_level=-1):
@@ -72,11 +73,16 @@ def ReadFile(filename, output):
     return root
 
 if __name__ == "__main__":
-    filename = "D:/Desktop/check_sku.txt"
-    outputfile = "D:/Desktop/check_sku.mmd"
-    output = open(outputfile, 'w')
-    output.writelines('graph LR\n')
-    root = ReadFile(filename, output)
-    output.writelines('\n')
-    PrintTree(root, output)
-    output.close()
+    function_names = ['A', 'B']
+    current_dir = 'D:/Desktop/'
+    for function_name in function_names:
+        filename = current_dir + function_name + '.txt'
+        outputfile = current_dir + function_name + '.mmd'
+        output = open(outputfile, 'w')
+        output.writelines('graph LR\n')
+        root = ReadFile(filename, output)
+        output.writelines('\n')
+        PrintTree(root, output)
+        output.close()
+        cmd = 'mmdc -i ' + outputfile + ' -o ' + current_dir + function_name + '.png' + ' -w 2048'
+        os.system(cmd)
