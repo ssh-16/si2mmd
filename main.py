@@ -1,6 +1,17 @@
 import hashlib
 import os
 
+#####################################################
+# Source Insight的Reference功能生成的被调关系图不够简洁，
+# 此脚本将Source Insight的Reference List转成mermaid
+# 代码，可以用mermaid-js-cli生成相应的png结构图；也可将
+# mermaid代码嵌入markdown文件中查看。
+#
+# 用法：Source Insight选中函数后在Reference List窗口中
+# 指定Expand Special，然后Copy List为相应的文件名，
+# 再运行此脚本。
+#####################################################
+
 class Function:
     def __init__(self, name="root", file_type='X', file_name="", fold_level=-1):
         self.name = name
@@ -73,7 +84,11 @@ def ReadFile(filename, output):
     return root
 
 if __name__ == "__main__":
-    function_names = ['A', 'B']
+    function_names = [
+        '1',
+        '2',
+        '3',
+    ]
     current_dir = 'D:/Desktop/'
     for function_name in function_names:
         filename = current_dir + function_name + '.txt'
